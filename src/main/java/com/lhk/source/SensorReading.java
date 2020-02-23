@@ -1,16 +1,21 @@
 package com.lhk.source;
 
+import java.io.Serializable;
+
 /**
  * @description:
  * @author: huikang.lv
  * @create: 2020-02-09 23:33
  */
-public class SensorReading {
-    String id;
-    long timestamp;
-    Double temperature;
+public class SensorReading implements Serializable {
+    private String id;
+    private Long timestamp;
+    private Double temperature;
 
-    public SensorReading(String id, long timestamp, Double temperature) {
+    public SensorReading() {
+    }
+
+    public SensorReading(String id, Long timestamp, Double temperature) {
         this.id = id;
         this.timestamp = timestamp;
         this.temperature = temperature;
@@ -24,11 +29,11 @@ public class SensorReading {
         this.id = id;
     }
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -38,5 +43,14 @@ public class SensorReading {
 
     public void setTemperature(Double temperature) {
         this.temperature = temperature;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorReading{" +
+                "id='" + id + '\'' +
+                ", timestamp=" + timestamp +
+                ", temperature=" + temperature +
+                '}';
     }
 }
