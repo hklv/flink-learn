@@ -1,6 +1,8 @@
 package com.lhk.apitest;
 
 import com.lhk.source.SensorReading;
+import org.apache.flink.api.common.functions.RichFlatMapFunction;
+import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.streaming.api.datastream.ConnectedStreams;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
@@ -8,6 +10,7 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.datastream.SplitStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.co.CoMapFunction;
+import org.apache.flink.util.Collector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +160,21 @@ public class TransformTest {
 
         public void setTemperature(Double temperature) {
             this.temperature = temperature;
+        }
+    }
+
+
+    class MyMapper extends RichMapFunction<SensorReading,String> {
+        @Override
+        public String map(SensorReading sensorReading) throws Exception {
+            return null;
+        }
+    }
+
+    class MyFlatMapFunction extends RichFlatMapFunction<SensorReading,String>{
+        @Override
+        public void flatMap(SensorReading sensorReading, Collector<String> collector) throws Exception {
+
         }
     }
 
